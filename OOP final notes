@@ -1,0 +1,63 @@
+RPG - modern/fantasy
+
+- save state - able to save mid game, and able to save base characters
+- user input/character creation - classes
+- story
+- polymorphism for monsters
+- encounters - player fights monsters and a boss at the end of the path
+- maybe NPCs - able to get more of the story, maybe upgrade things or give an item and get something in return 
+- branching path but only a small amount of endings - player can choose which fork in the road to take, leading to different things, sometimes theyll know which way leads to what, like a monster, chest, etc. or sometimes it will be random
+
+
+Story
+- branching movement, but ultimately the funneled to the same end
+- text based
+
+player character
+- parent player class wtih child subclasses
+- Warrior, Wizard, Thief subclasses
+- Name
+- HP
+- MP
+- damage
+- class related stat
+- EXP
+- Level
+
+
+monsters
+- parent Monster class with child creatures
+- type
+- HP
+- MP
+- damage
+- Difficulty
+- final boss
+
+levels
+- EXP
+- set stat boosts based on class
+
+encounters
+- based on where the player chooses to go, or random if on a random path
+
+inventory system
+- 2D array(?)
+- able to add items
+- able to drop items
+
+saving
+- at least saving characters
+- save mid adventure?
+
+branching "path"
+- give at least 2 choices, each going to a seperate thing, completely random
+- monster encounters
+- npc enocunters
+- inn encounters
+- chest encounters
+- final boss encounter at the end
+
+
+
+
