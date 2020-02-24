@@ -1,0 +1,4 @@
+Story for RPG - OOP Final
+
+Character is created. They are from a big city and have just finished high school. They have heard of adventurers going out to small villages and towns to help defeat monsters that have been attacking them. They have decided to go to Montana to help with a dungeon that has been plaguing the people of ___. They reach Helena to start their adventure officially. (This is where game starts.)
+
