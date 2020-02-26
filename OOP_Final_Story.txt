@@ -2,3 +2,8 @@ Story for RPG - OOP Final
 
 Character is created. They are from a big city and have just finished high school. They have heard of adventurers going out to small villages and towns to help defeat monsters that have been attacking them. They have decided to go to Montana to help with a dungeon that has been plaguing the people of ___. They reach Helena to start their adventure officially. (This is where game starts.)
 
+Adventurer heads down path to Townsend, possibly coming across a small, or at least weak, monster. They fight and (hopefully, possible Game Over here) defeat the monster, continuing on to Townsend. They possibly come across a fork in their path, one path has a shy NPC (that could be a follower?) and the other has a chest. Paths come back together after walking around 50 feet. Once paths become one again, adventurer walks for a while before reaching Townsend. 
+
+Upon reaching Townsend, adventurer is approached by a frantic looking NPC, Taylor Parker. "I don't care if you're not even a legit adventurer or not. Can you please deal with the dungeon by my house? Monsters keep messing with my house and it's driving me insane!" Adventurer chooses whether to help or not. ***Split path***
+
+[CHOSE TO HELP] Adventurer agrees to help. "Oh, thank goodness. I would deal with it myself, but I'm not really one for violence." Taylor said, motioning for the adventurer to follow them. "I'll show you where I live. The dungeon isn't too far away from my house... obviously." Taylor trailed off, leading the adventurer along a narrow path that cuts through Townsend's more busy area. They pass by shops and an inn. The adventurer has the option to stop in the shop for items, before they carry on with Taylor. 
