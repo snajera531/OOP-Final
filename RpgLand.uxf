@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>9</zoom_level>
+  <zoom_level>6</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>387</x>
-      <y>162</y>
-      <w>270</w>
-      <h>243</h>
+      <x>660</x>
+      <y>84</y>
+      <w>180</w>
+      <h>162</h>
     </coordinates>
     <panel_attributes>Character
 --
@@ -25,10 +25,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>666</x>
-      <y>162</y>
-      <w>234</w>
-      <h>189</h>
+      <x>258</x>
+      <y>54</y>
+      <w>156</w>
+      <h>126</h>
     </coordinates>
     <panel_attributes>Enemy
 --
@@ -43,10 +43,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>918</x>
-      <y>162</y>
-      <w>225</w>
-      <h>189</h>
+      <x>1014</x>
+      <y>90</y>
+      <w>150</w>
+      <h>126</h>
     </coordinates>
     <panel_attributes>Inventory
 --
@@ -54,17 +54,17 @@
 --
 + addItem(item : Item) : void
 + remItem(item : Item) : void
-+ useItem
++ useItem(item : Item) : void
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>279</x>
-      <y>621</y>
-      <w>171</w>
-      <h>216</h>
+      <x>588</x>
+      <y>396</y>
+      <w>114</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>Warrior
 --
@@ -77,47 +77,62 @@ grit : int
 - getAtk() : int
 - setAtk(atk : int) : void
 - getGrit() : int
-- setGrit(
+- setGrit(grit : int) : void
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>477</x>
-      <y>630</y>
-      <w>126</w>
+      <x>720</x>
+      <y>396</y>
+      <w>120</w>
       <h>144</h>
     </coordinates>
     <panel_attributes>Wizard
 --
 intel : int
 pow : int
-wit : int</panel_attributes>
+wit : int
+--
+- getIntel() : int
+- setIntel(intel : int) : void
+- getPow() : int
+- setPow(pow : int) : void
+- getWit() : int
+- setWit(wit : int) : void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>621</x>
-      <y>630</y>
-      <w>126</w>
+      <x>864</x>
+      <y>396</y>
+      <w>108</w>
       <h>144</h>
     </coordinates>
     <panel_attributes>Thief
 --
 dex : int
 agi : int
-flit : int</panel_attributes>
+flit : int
+--
+- getDex() : int
+- setDex(dex  : int) : void
+- getAgi() : int
+- setAgi(agi : int) : void
+- getFlit() : int
+- setFlit(flit : int) : void
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>387</x>
-      <y>414</y>
-      <w>270</w>
-      <h>189</h>
+      <x>660</x>
+      <y>258</y>
+      <w>180</w>
+      <h>126</h>
     </coordinates>
     <panel_attributes>Level
 --
@@ -133,10 +148,10 @@ damage : int
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>477</x>
-      <y>783</y>
-      <w>252</w>
-      <h>171</h>
+      <x>696</x>
+      <y>720</y>
+      <w>168</w>
+      <h>114</h>
     </coordinates>
     <panel_attributes>PathController
 --
@@ -149,10 +164,10 @@ story : String
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>747</x>
-      <y>792</y>
-      <w>225</w>
-      <h>162</h>
+      <x>696</x>
+      <y>606</y>
+      <w>150</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes>CombatController
 &lt;&lt;IAttackable&gt;&gt; implement
@@ -165,10 +180,10 @@ dmg : int
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>918</x>
-      <y>369</y>
-      <w>225</w>
-      <h>171</h>
+      <x>888</x>
+      <y>792</y>
+      <w>150</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>GameController</panel_attributes>
     <additional_attributes/>
@@ -176,10 +191,10 @@ dmg : int
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>45</x>
-      <y>324</y>
-      <w>216</w>
-      <h>225</h>
+      <x>432</x>
+      <y>204</y>
+      <w>144</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>ITurnable
 --
@@ -189,10 +204,10 @@ dmg : int
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>45</x>
-      <y>90</y>
-      <w>216</w>
-      <h>225</h>
+      <x>432</x>
+      <y>42</y>
+      <w>144</w>
+      <h>150</h>
     </coordinates>
     <panel_attributes>IAttackable
 --
@@ -203,51 +218,100 @@ miss (roll : int) : int</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1323</x>
-      <y>153</y>
-      <w>180</w>
-      <h>180</h>
+      <x>1284</x>
+      <y>84</y>
+      <w>120</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>Item
 --
+- health : HPotion
+- mana : MPotion
 - name : String
 - description : String
 --
++</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1194</x>
+      <y>240</y>
+      <w>114</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>HPotion
+--
+- heal : int
+--
++ use(heal : Character ) : int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1362</x>
+      <y>246</y>
+      <w>60</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>Weapon
+--
+- dmg : int
+--
++ equip()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1278</x>
+      <y>330</y>
+      <w>120</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>MPotion
+-
+rest : int
+--
++ use(heal : Character) : int
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLClass</id>
+    <id>UMLNote</id>
     <coordinates>
-      <x>1314</x>
-      <y>396</y>
-      <w>90</w>
-      <h>99</h>
+      <x>1134</x>
+      <y>390</y>
+      <w>120</w>
+      <h>66</h>
     </coordinates>
-    <panel_attributes>Potion
---</panel_attributes>
+    <panel_attributes>Possible Enum for potions?
+bg=blue</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1440</x>
-      <y>396</y>
-      <w>90</w>
-      <h>99</h>
+      <x>450</x>
+      <y>690</y>
+      <w>102</w>
+      <h>30</h>
     </coordinates>
-    <panel_attributes>Weapon</panel_attributes>
+    <panel_attributes>ConsoleIO
+&lt;&lt;library&gt;&gt;</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLClass</id>
+    <id>Relation</id>
     <coordinates>
-      <x>1377</x>
-      <y>522</y>
-      <w>90</w>
-      <h>99</h>
+      <x>546</x>
+      <y>702</y>
+      <w>162</w>
+      <h>72</h>
     </coordinates>
-    <panel_attributes>Armor</panel_attributes>
-    <additional_attributes/>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;250.0;100.0</additional_attributes>
   </element>
 </diagram>
