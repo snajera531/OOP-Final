@@ -1,0 +1,41 @@
+package models;
+
+import java.util.Random;
+
+public class BabyDragon extends Monster {
+    Random rng = new Random();
+
+    public BabyDragon() {
+        setName(MonsterName.BABY_DRAGON);
+        setBaseHP(getBaseHP());
+        setCurrentHP(getBaseHP());
+    }
+
+    @Override
+    public void setBaseHP(int baseHP){
+        this.baseHP = rng.nextInt(30 - 25 + 1) + 25;
+    }
+
+    @Override
+    public String appearance(){
+        return "A Baby Dragon hatches from its egg, and its hungry for its first meal!";
+    }
+
+    @Override
+    public int attack(int roll) {
+        int damage;
+        if(roll >= 5) {
+            damage = rng.nextInt(15 - 10 + 1) + 10;
+        }
+        else {
+            damage = 0;
+        }
+        return damage;
+    }
+
+    @Override
+    public String toString() {
+        return getName() + "\n" +
+                "HP: " + getCurrentHP()  + "\n";
+    }
+}

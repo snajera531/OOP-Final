@@ -1,0 +1,83 @@
+package models;
+
+import java.util.Random;
+
+public abstract class Monster {
+    protected MonsterName name;
+    protected int baseHP;
+    protected int currentHP;
+
+    //gets the name of the monster from the enum "MonsterName"
+    public MonsterName getName() {
+        return name;
+    }
+
+    //sets the name to the corresponding name in the said enum
+    public void setName(MonsterName name) {
+        this.name = name;
+    }
+
+    //gets the monsters baseHP, which is their max possible amount of health
+    public int getBaseHP() {
+        return baseHP;
+    }
+
+    //Base HP is abstract, because the child decides its range for HP
+    public abstract void setBaseHP(int HP);
+
+    //gets the monsters current HP
+    public int getCurrentHP() {
+        return currentHP;
+    }
+
+    //sets the monsters current HP
+    public void setCurrentHP(int currentHP) {
+        this.currentHP = currentHP;
+    }
+
+    /**
+     * roll will be used when the monster attacks. It will determine accuracy for the attack.
+     * @param quantity takes in how many times to make the accuracy check, in this case 1 time
+     * @param sides determines the max range the accuracy can fall into (in this case 1-20)
+     * @return the accuracy of the attack
+     */
+    public int roll(int quantity, int sides) {
+        Random rng = new Random();
+        int accuracy = 0;
+        for (int i = 0; i < quantity; i++){
+            int output = rng.nextInt((sides - 1 + 1) +1);
+            accuracy = accuracy + output;
+        }
+        return accuracy;
+    }
+
+    //remove this attack method for iCombatable
+    //monsters must implement iComabtable
+    public abstract int attack(int roll);
+
+    //Appearance is abstract, it takes in the different forms of the child class's way to appear before the player.
+    //IE "A slime sloshes its way towards you!"
+    public abstract String appearance();
+
+    /**
+     * takeDamage will be used when the monster is attacked by the player
+     * @param currentHP takes in the monster's getCurrentHp() method
+     * @param damage takes in the attack() method
+     * @return the monster's new current HP (currentHP - attack)
+     */
+    public int takeDamage(int currentHP, int damage){
+        setCurrentHP(currentHP - damage);
+        return getCurrentHP();
+    }
+
+    /**
+     * toString will be overwritten by the child class's toString to show the player what the creature is and what its HP is
+     * @return the monster's name and its current HP
+     */
+    @Override
+    public String toString() {
+        return getName() + "\n" +
+                "HP: " + getCurrentHP()  + "\n";
+    }
+
+}

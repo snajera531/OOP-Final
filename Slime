@@ -1,0 +1,59 @@
+package models;
+
+import java.util.Random;
+
+public class Slime extends Monster {
+    Random rng = new Random();
+
+    //constructor for the Slime
+    public Slime() {
+        setName(MonsterName.SLIME);
+        setBaseHP(getBaseHP());
+        setCurrentHP(getBaseHP());
+    }
+
+    /**
+     * used to overwrite the abstract setBaseHP method in the monster class
+     * @param baseHP used with a randomly generated number to get the monsters HP, in this case, between 10 and 15. Scales with difficulty of monster.
+     */
+    @Override
+    public void setBaseHP(int baseHP){
+        this.baseHP = rng.nextInt(15 - 10 + 1) + 10;
+    }
+
+    /**
+     * used to overwrite the abstract appearance method in the monster class
+     * @return the string of the monster's appearance, like a wild pokemon, in this case "A Slime sloshes its way towards you!". Different per monster.
+     */
+    @Override
+    public String appearance(){
+        return "A Slime sloshes its way towards you!";
+    }
+
+    /**
+     * used to determine the amount of damage the monster does when attacking the player
+     * @param roll takes in the result from the roll method in monster to determine if the attack hits or not
+     * @return the amount of damage the monster does, in this case, anywhere from 1 to 5, or 0 in the case of the attack missing by accuracy being lower than 5. Damage scales per monster.
+     */
+    @Override
+    public int attack(int roll) {
+        int damage;
+        if(roll >= 5) {
+            damage = rng.nextInt(5 - 1 + 1) + 1;
+        }
+        else {
+            damage = 0;
+        }
+        return damage;
+    }
+
+    /**
+     * use to overwrite the toString method in the Monster class
+     * @return the monsters name and current hp to display to the player later on, obviously different for each monster
+     */
+    @Override
+    public String toString() {
+        return getName() + "\n" +
+                "HP: " + getCurrentHP()  + "\n";
+    }
+}

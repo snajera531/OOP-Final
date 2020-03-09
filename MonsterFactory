@@ -1,0 +1,93 @@
+package controllers;
+
+import models.*;
+
+import java.util.Random;
+
+public class MonsterFactory {
+    Random rng = new Random();
+
+    /**
+     * createEasy will be used on the initial floors of the dungeon to make a monster
+     * Creates an "Easy" level monster, which includes a Slime, Skeleton, and Zombie
+     * The monster is randomly selected between the 3
+     * @return the monster
+     */
+
+    public Monster createEasy(){
+        Monster monster;
+        int randomEasy = rng.nextInt((3 - 1 + 1) + 1);
+
+        if (randomEasy == 1){
+            monster = new Slime();
+        }
+        else if(randomEasy == 2){
+            monster = new Skeleton();
+        }
+        else{
+            monster = new Zombie();
+        }
+
+        return monster;
+    }
+
+    /**
+     * createMedium will be used on the mid floors of the dungeon to make a monster
+     * Creates a "Medium" level monster, which includes a Ghost, Wolf, and Vampire
+     * The monster is randomly selected between the 3
+     * @return the monster
+     */
+
+    public Monster createMedium(){
+        Monster monster;
+        int randomMedium = rng.nextInt((3 - 1 + 1) + 1);
+
+        if(randomMedium == 1){
+            monster = new Ghost();
+        }
+        else if(randomMedium == 2){
+            monster = new Wolf();
+        }
+        else {
+            monster = new Vampire();
+        }
+
+        return monster;
+    }
+
+    /**
+     * createHard will be used on the lower floors of the dungeon to make a monster
+     * Creates a "Hard" level monster, which includes a Ogre, Minotaur, and baby dragon
+     * The monster is randomly selected between the 3
+     * @return the monster
+     */
+
+    public Monster createHard(){
+        Monster monster;
+        int randomHard = rng.nextInt((3 - 1 + 1) + 1);
+
+        if(randomHard == 1){
+            monster = new Ogre();
+        }
+        else if(randomHard == 2){
+            monster = new Minotaur();
+        }
+        else {
+            monster = new BabyDragon();
+        }
+
+        return monster;
+    }
+
+    /**
+     * createBoss will be used on the last room of the dungeon to make the final boss
+     * Creates the "boss" level monster, which includes the Mama Dragon
+     * @return the monster
+     */
+
+    public Monster createBoss(){
+        return new MamaDragon();
+
+    }
+
+}

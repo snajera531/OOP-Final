@@ -1,0 +1,41 @@
+package models;
+
+import java.util.Random;
+
+public class Skeleton extends Monster {
+    Random rng = new Random();
+
+    public Skeleton() {
+        setName(MonsterName.SKELETON);
+        setBaseHP(getBaseHP());
+        setCurrentHP(getBaseHP());
+    }
+
+    @Override
+    public void setBaseHP(int baseHP){
+        this.baseHP = rng.nextInt(15 - 10 + 1) + 10;
+    }
+
+    @Override
+    public String appearance(){
+        return "A Skeleton forms from scattered bones! Nyeh!";
+    }
+
+    @Override
+    public int attack(int roll) {
+        int damage;
+        if(roll >= 5) {
+            damage = rng.nextInt(5 - 1 + 1) + 1;
+        }
+        else {
+            damage = 0;
+        }
+        return damage;
+    }
+
+    @Override
+    public String toString() {
+        return getName() + "\n" +
+                "HP: " + getCurrentHP()  + "\n";
+    }
+}

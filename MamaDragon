@@ -1,0 +1,45 @@
+package models;
+
+import java.util.Random;
+
+public class MamaDragon extends Monster {
+    Random rng = new Random();
+
+    public MamaDragon() {
+        setName(MonsterName.MAMA_DRAGON);
+        setBaseHP(getBaseHP());
+        setCurrentHP(getBaseHP());
+    }
+
+    @Override
+    public void setBaseHP(int baseHP){
+        this.baseHP = 50;
+    }
+
+    @Override
+    public String appearance(){
+        return "Mama Dragon is here, and she does NOT look happy! Looks like she's talking! \n" +
+                "\"You... the murderer of my child(ren). You dare show your face here. You thought there wouldn't be consequences for mindlessly killing my child(ren)? \n" +
+                "You humans are all the same. You go around killing monsters for the fame, without considering their stories. \n" +
+                "I will end your little fame-seeking adventure, and then I will take this fight to your biggest city. I will show you the wrath of a grieving mother.\" \n" +
+                "...Yep. Definitely angry.";
+    }
+
+    @Override
+    public int attack(int roll) {
+        int damage;
+        if(roll >= 5) {
+            damage = rng.nextInt(20 - 15 + 1) + 15;
+        }
+        else {
+            damage = 0;
+        }
+        return damage;
+    }
+
+    @Override
+    public String toString() {
+        return getName() + "\n" +
+                "HP: " + getCurrentHP()  + "\n";
+    }
+}

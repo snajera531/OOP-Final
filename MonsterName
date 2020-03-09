@@ -1,0 +1,14 @@
+package models;
+
+public enum MonsterName {
+    SLIME,
+    SKELETON,
+    ZOMBIE,
+    GHOST,
+    WOLF,
+    VAMPIRE,
+    OGRE,
+    MINOTAUR,
+    BABY_DRAGON,
+    MAMA_DRAGON
+}
