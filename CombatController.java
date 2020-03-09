@@ -1,120 +1,104 @@
-package models;
+package view;
 
-import interfaces.ICombatable;
+import lib.ConsoleIO;
+import models.*;
+import models.Character;
 
 import java.util.Random;
 
-public class Character implements ICombatable{
-    private String name;
-    private int hp;
-    private int curHp;
-    private int damage;
-    private int exp;
-    private Inventory inv;
-    private int potions;
+public class CombatController {
+    private int dmg;
+    private int dmgTaken;
+    private String combTxt;
+    private Character player;
+    private boolean isAlive;
+    private boolean enemyAlive;
 
-    public Character() {
-
-    }
-
-    public Character(String name, int hp, int curHp, int damage, int exp, Inventory inv) {
-        this.name = name;
-        this.hp = hp;
-        this.curHp = curHp;
-        this.damage = damage;
-        this.exp = exp;
-        this.inv = inv;
-    }
-
-    public int getPotions() {
-        return potions;
-    }
-
-    public void setPotions(int potions) {
-        this.potions = potions;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getHp() {
-        return hp;
-    }
-
-    public void setHp(int hp) {
-        this.hp = hp;
-    }
-
-    public int getCurHp() {
-        return curHp;
-    }
-
-    public void setCurHp(int curHp) {
-        this.curHp = curHp;
-    }
-
-    public int getDamage() {
-        return damage;
-    }
-
-    public void setDamage(int damage) {
-        this.damage = damage;
-    }
-
-    public int getExp() {
-        return exp;
-    }
-
-    public void setExp(int exp) {
-        this.exp = exp;
-    }
-
-    public Inventory getInv() {
-        return inv;
-    }
-
-    public void setInv(Inventory inv) {
-        this.inv = inv;
-    }
     public int roll(int num, int sides) {
-//        int x = num;
-//        int y = sides;
         int total = 0;
         for (int i = 0; i < num; i++) {
             Random ran = new Random();
-//            int n = ran.nextInt(sides) + 1;
             System.out.println("On Roll: " + (i + 1) + " You got " + ran);
             total += i;
         }
         return total;
     }
-    @Override
-    public int attack(int rollN) {
-        rollN = roll(5,3);
-        return rollN;
-    }
-    @Override
-    public int accuracy(int roll) {
-        roll = roll(5,3);
-        int statBuff = roll + getExp() / 10 * 2;
-        return roll;
+
+    private Monster randSter(){
+        int pick = new Random().nextInt(Monster.values().length);
+        return Monster.values()[pick];
     }
 
-    @Override
-    public String toString() {
-        return "Character{" +
-                "name='" + name + '\'' +
-                ", hp=" + hp +
-                ", curHp=" + curHp +
-                ", damage=" + damage +
-                ", exp=" + exp +
-                ", inv=" + inv +
-                ", potions=" + potions +
-                '}';
+    public void encounter(Enemy ene){
+
+        isAlive = player.getCurHp() > 0;
+        enemyAlive = ene.hp > 0;
+        do{
+            System.out.println("You've encounter a " + randSter() + "\nit has " + ene.hp + "HP!");
+            System.out.println("\nYou have " + player.getExp());
+            int input = ConsoleIO.promptForMenuSelection(FightMenu, false);
+            switch (input){
+                case 1:
+                dmgTaken = player.getCurHp() - ene.attack(roll(2, 4));
+
+                int initiate = player.accuracy(roll(1, 20));
+                if (initiate < 8) {
+                    dmg = 0;
+                    System.out.println("You've missed! The " + randSter() + "took no damage!");
+                    System.out.println("The " + randSter() + " struck you for " + dmgTaken + " Damage!");
+                }
+                if (initiate <= 18) {
+                    int hit = player.attack(roll(3, 6));
+                    hit *= 2;
+                    System.out.println("You hit a vital! The " + randSter() + " took " + hit + " Damage!");
+                    ene.hp -= hit;
+
+                }
+                if (initiate > 8 && initiate < 18) {
+                    int hit = player.attack(roll(3, 6));
+                    System.out.println("You hit the " + randSter() + " for " + hit + " Damage!");
+                    ene.hp -= hit;
+                }
+                if (!isAlive){
+                    charDied();
+                    System.out.println("You have been slain, It was a valiant effort, but Alas You've been vanquished");
+                    System.out.println("Along the way you've gained " + player.getExp() + "xp!");
+                }
+                case 2:
+                    if(player.getPotions() > 0 && player.getCurHp() < player.getHp()) {
+                         player.setCurHp(100);
+                         if(player.getCurHp()> player.getHp())
+                             player.setCurHp(player.getHp());
+
+                    }else {
+                        System.out.println("You have no potions / You're already full");
+
+                    }
+                   // viewInventory();
+
+                case 3:
+                    stats(player);
+                }
+
+        }while(enemyAlive);
+    System.out.println("\n\nYou beat the " + randSter() + "!\n");
+
+}
+    public static String[] FightMenu = {"Attack!","Check Inventory", "Character Stats"};
+
+    public int attack(int roll){
+        return roll;
+    }
+    public Inventory inv(Inventory inv){
+        return inv;
+    }
+    public String stats(Character character){
+        return character.toString();
+    }
+    public void charDied(){
+        for(int i=0; i < 50; i++){
+            System.out.println("");
+        }
+
     }
 }
