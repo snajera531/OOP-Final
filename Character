@@ -1,6 +1,7 @@
-package models;
+package models.classes;
 
 import interfaces.ICombatable;
+import models.Inventory;
 
 import java.util.Random;
 
@@ -10,28 +11,15 @@ public class Character implements ICombatable{
     private int curHp;
     private int damage;
     private int exp;
-    private Inventory inv;
-    private int potions;
+    private int HPots, MPots;
 
     public Character() {
-
-    }
-
-    public Character(String name, int hp, int curHp, int damage, int exp, Inventory inv) {
-        this.name = name;
-        this.hp = hp;
-        this.curHp = curHp;
-        this.damage = damage;
-        this.exp = exp;
-        this.inv = inv;
-    }
-
-    public int getPotions() {
-        return potions;
-    }
-
-    public void setPotions(int potions) {
-        this.potions = potions;
+        setName(name);
+        setHp(hp);
+        setCurHp(curHp);
+        setDamage(damage);
+        setExp(exp);
+        setHPots(MPots);
     }
 
     public String getName() {
@@ -74,20 +62,26 @@ public class Character implements ICombatable{
         this.exp = exp;
     }
 
-    public Inventory getInv() {
-        return inv;
+    public int getHPots() {
+        return HPots;
     }
 
-    public void setInv(Inventory inv) {
-        this.inv = inv;
+    public void setHPots(int HPots) {
+        this.HPots = HPots;
     }
+
+    public int getMPots() {
+        return MPots;
+    }
+
+    public void setMPots(int MPots) {
+        this.MPots = MPots;
+    }
+
     public int roll(int num, int sides) {
-//        int x = num;
-//        int y = sides;
         int total = 0;
         for (int i = 0; i < num; i++) {
             Random ran = new Random();
-//            int n = ran.nextInt(sides) + 1;
             System.out.println("On Roll: " + (i + 1) + " You got " + ran);
             total += i;
         }
@@ -98,12 +92,6 @@ public class Character implements ICombatable{
         rollN = roll(5,3);
         return rollN;
     }
-    @Override
-    public int accuracy(int roll) {
-        roll = roll(5,3);
-        int statBuff = roll + getExp() / 10 * 2;
-        return roll;
-    }
 
     @Override
     public String toString() {
@@ -113,9 +101,7 @@ public class Character implements ICombatable{
                 ", curHp=" + curHp +
                 ", damage=" + damage +
                 ", exp=" + exp +
-                ", inv=" + inv +
-                ", potions=" + potions +
-                '}';
+                ", HPots=" + HPots +
+                ", MPots=" + MPots;
     }
 }
-
