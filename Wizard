@@ -1,0 +1,56 @@
+package models.classes;
+
+import interfaces.ICombatable;
+import models.Inventory;
+
+public class Warrior extends Character implements ICombatable {
+    private int str;
+    private int atk;
+    private int grit;
+
+    public Warrior(String name, int hp, int curHp, int damage, int exp, int HPots, int MPots, int str, int atk, int grit) {
+//        super(name, hp, curHp, damage, exp, HPots, MPots);
+        this.str = str;
+        this.atk = atk;
+        this.grit = grit;
+    }
+
+    public int getStr() {
+        return str;
+    }
+
+    public void setStr(int str) {
+        this.str = str;
+    }
+
+    public int getAtk() {
+        return atk;
+    }
+
+    public void setAtk(int atk) {
+        this.atk = atk;
+    }
+
+    public int getGrit() {
+        return grit;
+    }
+
+    public void setGrit(int grit) {
+        this.grit = grit;
+    }
+
+    @Override
+    public String toString() {
+        return "Warrior{" +
+                "str=" + getStr() +
+                ", atk=" + getAtk() +
+                ", grit=" + getGrit();
+    }
+
+    @Override
+    public int attack(int roll) {
+        roll = roll(3, 9);
+        int statBuff = roll + getExp() / 10 * 2;
+        return statBuff + getGrit();
+    }
+}
