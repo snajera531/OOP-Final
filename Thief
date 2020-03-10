@@ -1,0 +1,57 @@
+package models.classes;
+
+import interfaces.ICombatable;
+import models.Inventory;
+
+public class Thief extends Character implements ICombatable {
+    private int dex;
+    private int agi;
+    private int flit;
+
+    public Thief(String name, int hp, int curHp, int damage, int exp, int HPots, int MPots, int dex, int agi, int flit) {
+//        super(name, hp, curHp, damage, exp, HPots, MPots);
+        this.dex = dex;
+        this.agi = agi;
+        this.flit = flit;
+    }
+
+    public int getDex() {
+        return dex;
+    }
+
+    public void setDex(int dex) {
+        this.dex = dex;
+    }
+
+    public int getAgi() {
+        return agi;
+    }
+
+    public void setAgi(int agi) {
+        this.agi = agi;
+    }
+
+    public int getFlit() {
+        return flit;
+    }
+
+    public void setFlit(int flit) {
+        this.flit = flit;
+    }
+
+    @Override
+    public String toString() {
+        return "Thief" +
+                "Dexterity=" + getDex() +
+                ", Agility=" + getAgi() +
+                ", Flit=" + getFlit();
+    }
+
+    @Override
+    public int attack(int rollN) {
+        rollN = roll(5,3);
+        int statBuff = rollN + getExp() / 10 * 2;
+        return statBuff+getFlit();
+    }
+}
+
