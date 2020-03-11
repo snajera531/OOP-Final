@@ -3,54 +3,54 @@ package models.classes;
 import interfaces.ICombatable;
 import models.Inventory;
 
-public class Warrior extends Character implements ICombatable {
-    private int str;
-    private int atk;
-    private int grit;
+public class Wizard extends Character implements ICombatable {
+    private int intel;
+    private int pow;
+    private int wit;
 
-    public Warrior(String name, int hp, int curHp, int damage, int exp, int HPots, int MPots, int str, int atk, int grit) {
+    public Wizard(String name, int hp, int curHp, int damage, int exp, int HPots, int MPots, int intel, int pow, int wit) {
 //        super(name, hp, curHp, damage, exp, HPots, MPots);
-        this.str = str;
-        this.atk = atk;
-        this.grit = grit;
+        this.intel = intel;
+        this.pow = pow;
+        this.wit = wit;
     }
 
-    public int getStr() {
-        return str;
+    public int getIntel() {
+        return intel;
     }
 
-    public void setStr(int str) {
-        this.str = str;
+    public void setIntel(int intel) {
+        this.intel = intel;
     }
 
-    public int getAtk() {
-        return atk;
+    public int getPow() {
+        return pow;
     }
 
-    public void setAtk(int atk) {
-        this.atk = atk;
+    public void setPow(int pow) {
+        this.pow = pow;
     }
 
-    public int getGrit() {
-        return grit;
+    public int getWit() {
+        return wit;
     }
 
-    public void setGrit(int grit) {
-        this.grit = grit;
+    public void setWit(int wit) {
+        this.wit = wit;
     }
 
     @Override
     public String toString() {
-        return "Warrior{" +
-                "str=" + getStr() +
-                ", atk=" + getAtk() +
-                ", grit=" + getGrit();
+        return "Wizard " + super.toString() +
+        "intel=" + getIntel() +
+                ", pow=" + getPow() +
+                ", wit=" + getWit();
     }
 
     @Override
-    public int attack(int roll) {
-        roll = roll(3, 9);
-        int statBuff = roll + getExp() / 10 * 2;
-        return statBuff + getGrit();
+    public int attack(int dmg) {
+        dmg = roll(2, 14);
+        int statBuff = dmg + getExp() / 10 * 2;
+        return statBuff+getWit();
     }
 }
