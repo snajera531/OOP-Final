@@ -1,3 +1,4 @@
+
 package models.classes;
 
 import interfaces.ICombatable;
@@ -41,7 +42,7 @@ public class Thief extends Character implements ICombatable {
 
     @Override
     public String toString() {
-        return "Thief" +
+        return "Thief" + super.toString() +
                 "Dexterity=" + getDex() +
                 ", Agility=" + getAgi() +
                 ", Flit=" + getFlit();
