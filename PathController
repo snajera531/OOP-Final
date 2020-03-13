@@ -1,0 +1,172 @@
+public class PathController {
+    Story s  = new Story();
+    Character player = new Character();
+    CombatController cc = new CombatController();
+    MonsterFactory mf = new MonsterFactory();
+    boolean gameOver = false;
+
+    //This method is for the story of the game before reaching the dungeon
+    public void startOfStory(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(s.opening);
+        sb.append(s.journeyToTownsend);
+        System.out.println(sb.toString());
+    }
+
+    //After the fight that occurs after the startOfStory() method, this returns the player to the story
+    public void afterFirstFight(){
+        StringBuilder sb = new StringBuilder();
+        System.out.println(sb.append(s.afterFirstFight).toString());
+        if(ConsoleIO.promptForBoolean("Would you like to go down the left or right path? (left/right) ", "left", "right")){
+            leftPath();
+        } else{
+            rightPath();
+            continuedRightPath();
+        }
+    }
+
+    //The player follows the story of the left path
+    public void leftPath(){
+        StringBuilder sb = new StringBuilder();
+        System.out.println(sb.append(s.leftStory).toString());
+        if(ConsoleIO.promptForBoolean("Would you like to take the health potion? (y/n) ", "y", "n")){
+            //TODO: item depositing
+        }
+
+    }
+
+    //The player follows the story of the right path
+    public void rightPath(){
+        StringBuilder sb = new StringBuilder();
+        System.out.println(sb.append(s.rightStory).toString());
+        chest(player);
+    }
+
+    //After player has checked chest
+    public void continuedRightPath(){
+        StringBuilder sb = new StringBuilder();
+        System.out.println(sb.append(s.continuedStory).toString());
+    }
+
+    //The player is entering Townsend
+    public void enteringTownsend(){
+        StringBuilder sb = new StringBuilder();
+        System.out.println(sb.append(s.townsend));
+        if(ConsoleIO.promptForBoolean("Will you help Taylor? (y/n) ", "y", "n")){
+            choseToHelp();
+        } else{
+            dontHelp1();
+        }
+    }
+
+    //The player chose to help the NPC
+    public void choseToHelp(){
+        StringBuilder sb = new StringBuilder();
+        System.out.println(sb.append(s.helpTaylor1).toString());
+        if(ConsoleIO.promptForBoolean("Will you go to the dungeon? (y/n) ", "y", "n")){
+            keepHelping();
+        } else{
+            dontHelp2();
+        }
+    }
+
+    //The player did not choose to help the NPC
+    public void dontHelp1(){
+        StringBuilder sb = new StringBuilder();
+        System.out.println(sb.append(s.dontHelpTaylor).toString());
+        if(ConsoleIO.promptForBoolean("Will you defeat the monster? (y/n) ", "y", "n")){
+            monsterAd();
+            if(!cc.encounter(player, mf.createMedium())){
+                gameOver = true;
+                System.out.println("\n~~GAME OVER~~\n\n");
+            } else {
+                afterMonsterAd();
+            }
+        } else{
+            dontHelpEnd();
+        }
+    }
+
+    //The player decided not to move on to the dungeon last minute.
+    public void dontHelp2(){
+        StringBuilder sb = new StringBuilder();
+        System.out.println(sb.append(s.dontHelpTaylor2).toString());
+    }
+
+    //The player continued to help the NPC
+    //This path leads to the dungeon
+    public void keepHelping(){
+        StringBuilder sb = new StringBuilder();
+        System.out.println(sb.append(s.keepHelping).toString());
+        if(!ConsoleIO.promptForBoolean("Will you enter the dungeon? Once you enter, there is no turning back. (y/n) ", "y", "n")){
+            dontHelpEnd();
+        }
+    }
+
+    //The player decided to answer the ad asking for a monster to be killed
+    public void monsterAd(){
+        StringBuilder sb = new StringBuilder();
+        System.out.println(sb.append(s.monsterAdQuest).toString());
+    }
+
+    //The player has defeated the monster and is approached by Taylor
+    public void afterMonsterAd(){
+        StringBuilder sb = new StringBuilder();
+        System.out.println(sb.append(s.choice2).toString());
+        if(ConsoleIO.promptForBoolean("Will you help Taylor or disappoint them again? (y/n) ", "y", "n")){
+            choseToHelp2();
+        } else{
+            dontHelpEnd();
+        }
+    }
+
+    //The player chose to help Taylor, after not helping the first time
+    public void choseToHelp2(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(s.helpTaylor2).append(s.keepHelping);
+        System.out.println(sb.toString());
+        if(!ConsoleIO.promptForBoolean("Will you enter the dungeon? Once you enter, there is no turning back. (y/n) ", "y", "n")){
+            dontHelpEnd();
+        }
+    }
+
+    //The player decided not to help with the monster ad
+    //This path leads to a Game Over
+    public void dontHelpEnd(){
+        StringBuilder sb = new StringBuilder();
+        System.out.println(sb.append(s.dontHelpEnd).toString());
+    }
+
+    public void chest(Character c){
+        int HPots = c.getHPots();
+        int MPots = c.getMPots();
+        StringBuilder sb = new StringBuilder();
+        String[] options = {"Check chest", "Don't check chest"};
+        switch(ConsoleIO.promptForMenuSelection(options, false)){
+            case 1:
+                System.out.println(sb.append(s.chest).toString());
+                break;
+            case 2:
+                System.out.println("You don't check the chest. \n\n");
+                break;
+            default:
+                System.out.println("There has been an issue, please, try again. ");
+        }
+
+        Random r = new Random();
+        int chance = r.nextInt(1);
+
+        if(ConsoleIO.promptForBoolean("Would you like to take what is inside the chest? (y/n) ", "y", "n")){
+            if(chance == 1){
+                HPots++;
+                c.setHPots(HPots);
+            } else{
+                MPots++;
+                c.setMPots(MPots);
+            }
+            System.out.println(s.chest);
+        } else{
+            System.out.println("You decided not to open the chest. \n\n");
+        }
+    }
+}
